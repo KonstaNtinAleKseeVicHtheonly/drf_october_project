@@ -1,5 +1,5 @@
 """
-URL configuration for pilot_drf project.
+URL configuration for config project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
@@ -15,8 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from core.project_config import project_settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/auth', include('apps.accounts.urls'), namespace = 'all_accounts')
 ]
+
+# if project_settings.DEBUG:
+#     urlpatterns += static(project_settings.MEDIA_URL, document_root=project_settings.STATIC_DIR)
+#     urlpatterns += static(project_settings.STATIC_URL, document_root=project_settings.IMAGES_DIR)
