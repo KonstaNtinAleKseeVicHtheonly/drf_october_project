@@ -2,7 +2,8 @@ from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from apps.accounts.models import User
-
+#openapi
+from drf_spectacular.utils import extend_schema, extend_schema_field
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     """Сериализатор для регистрации пользователя
@@ -82,7 +83,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'posts_count', 'comments_count'
         )
         read_only_fields = ('id', 'created_at', 'updated_at') # неизменяемые поля
-
+        
+    @extend_schema_field(serializers.IntegerField)
     def get_posts_count(self, obj):
         """Безопасное получение количества постов"""
         try:
@@ -90,7 +92,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         except AttributeError:
             # Если атрибут posts не существует, возвращаем 0
             return 0
-    
+    @extend_schema_field(serializers.IntegerField)
     def get_comments_count(self, obj):
         """Безопасное получение количества комментариев"""
         try:

@@ -18,10 +18,17 @@ from django.contrib import admin
 from django.urls import path, include
 from core.project_config import project_settings
 from django.conf.urls.static import static
+#схема
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/auth', include('apps.accounts.urls'), namespace = 'all_accounts')
+    path('api/v1/auth/', include('apps.accounts.urls', namespace = 'all_accounts')),
+    path('api/v1/posts/', include('apps.posts.urls', namespace= 'all_posts')),
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),# url для api всего проекта
+    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui")
+
 ]
 
 # if project_settings.DEBUG:

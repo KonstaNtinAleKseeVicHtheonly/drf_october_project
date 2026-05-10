@@ -1,4 +1,4 @@
-from datetime import timezone
+from django.utils import timezone
 
 from core.base_service import BaseService
 from apps.accounts.repo import AccountRepo
@@ -28,7 +28,7 @@ class AccountService(BaseService):
         if existed_user:
             raise ValidationError({"email": "User with this email already exists"})
         
-        new_user = self.repository.create_user(validated_data)
+        new_user = self.repository.create_new_user(validated_data)
         new_user.save()
         return new_user
     

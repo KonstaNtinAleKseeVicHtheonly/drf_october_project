@@ -27,3 +27,6 @@ class AccountRepo(BaseRepository):
         comments_count=Count('comments', distinct=True),#  Считает коменты
         ).get(id=user_id)
         return user_comments.count
+    
+    
+    

@@ -38,6 +38,7 @@ DJANGO_APPS  = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_spectacular'
 ]
 
 THIRD_PARTY_APPS = [
@@ -50,6 +51,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'apps.accounts',
+    'apps.posts'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -89,7 +91,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 #DB postgres
-DATABASES_POSTGRE = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': project_settings.DB_POSTGRES_NAME,
@@ -201,6 +203,15 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.MultiPartParser',
         'rest_framework.parsers.FormParser',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+}
+
+
+# настройки open API
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'My DRF Project',
+    'DESCRIPTION': 'Описание API',
+    'VERSION': '1.0.0',
 }
 
 
