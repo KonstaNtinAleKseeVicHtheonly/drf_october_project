@@ -71,7 +71,7 @@ class UserLoginSerializer(serializers.Serializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     """Сериализатор для профиля пользователя"""
     
-    full_name = serializers.ReadOnlyField()
+    full_name = serializers.SerializerMethodField()
     posts_count = serializers.SerializerMethodField()
     comments_count = serializers.SerializerMethodField()
 
