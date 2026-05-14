@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/auth/', include('apps.accounts.urls', namespace = 'all_accounts')),
     path('api/v1/posts/', include('apps.posts.urls', namespace= 'all_posts')),
+    path('api/v1/comments/', include('apps.comments.urls', namespace='all_comments')),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),# url для api всего проекта
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui")
 

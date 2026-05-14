@@ -14,7 +14,7 @@ class Comment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
     
-    
+    # связь с постом
     post = models.ForeignKey(
         'posts.Post',
         on_delete=models.CASCADE,
@@ -29,7 +29,7 @@ class Comment(models.Model):
         null=True,
         blank=True,
         related_name='replies'
-    )
+    ) # для вложенных комментариев
     
 
     class Meta:
